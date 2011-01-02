@@ -2,7 +2,8 @@
 
 YEAR=$1
 
-for MONTH in {1..12}
+for MONTH in {01..12}
 do 
+	echo $MONTH
 	./getByMonth.sh $YEAR $MONTH &
 done
