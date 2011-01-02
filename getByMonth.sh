@@ -27,15 +27,16 @@ case $MONTH in
    "11") W_MONTH=nov;;
    "12") W_MONTH=dec;;
    *) exit ;;
-esac	
+esac		
 
 # Maximum number of wallpaper by month
 for NUMBER in {1..100}
 do
 	URL="http://ngm.nationalgeographic.com/wallpaper/img/20"$YEAR"/"$MONTH"/"$W_MONTH$YEAR"wallpaper-"$NUMBER"_1600.jpg"
-	if wget -q --no-clobber $URL
-		then echo "Wallpaper #"$NUMBER" (20"$YEAR"-"$MONTH") saved in "$DEST 
-		else exit
+	NAME="20"$YEAR"-"$MONTH"-"$NUMBER".jpg"
+	if wget -q --no-clobber $URL -O $NAME
+		then echo "Wallpaper "$NAME" saved in "$DEST 
+		else rm $NAME ; exit
 	fi
 done
 	
