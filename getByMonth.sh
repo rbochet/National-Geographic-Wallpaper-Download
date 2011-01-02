@@ -11,6 +11,8 @@ cd $DEST
 YEAR=$1
 MONTH=$2
 
+echo "Downloading $MONTH/20$YEAR"
+
 case $MONTH in
    "01") W_MONTH=jan;;
    "02") W_MONTH=feb;;
@@ -27,7 +29,7 @@ case $MONTH in
    *) exit ;;
 esac	
 
-# Maximum number of wallpaper by year
+# Maximum number of wallpaper by month
 for NUMBER in {1..100}
 do
 	URL="http://ngm.nationalgeographic.com/wallpaper/img/20"$YEAR"/"$MONTH"/"$W_MONTH$YEAR"wallpaper-"$NUMBER"_1600.jpg"

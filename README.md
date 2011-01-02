@@ -17,9 +17,9 @@ Wallpapers are downloaded in the `wallpapers` folder. If you run the script one 
 
 What are the limits of these scripts ?
 --------------------------------------
-They currently work with 2010 + y.
+They currently work with 2009-09 + wallpapers.
 
-Before, naming and resolution was different.
+Before, naming and/or resolution was different.
 
 I want to add / change something 
 --------------------------------
