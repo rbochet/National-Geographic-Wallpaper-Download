@@ -3,17 +3,11 @@
 # Where the wallpapers are saved
 DEST="wallpapers"
 
-# Set up the directory
-mkdir -p $DEST
-cd $DEST
-
 # Get year and month
-YEAR=$1
-MONTH=$2
+[ -n "$1" ] && YEAR="$1"  || YEAR="$(date '+%Y')"
+[ -n "$2" ] && MONTH="$2" || MONTH="$(date '+%m')"
 
-echo "Downloading $MONTH/20$YEAR"
-
-case $MONTH in
+case "$MONTH" in
    "01") W_MONTH=jan;;
    "02") W_MONTH=feb;;
    "03") W_MONTH=mar;;
@@ -29,14 +23,16 @@ case $MONTH in
    *) exit ;;
 esac		
 
+# Set up the directory
+mkdir -p "$DEST"
+
+echo "Downloading $MONTH/$YEAR"
+
 # Maximum number of wallpaper by month
-for NUMBER in {1..100}
-do
-	URL="http://ngm.nationalgeographic.com/wallpaper/img/20"$YEAR"/"$MONTH"/"$W_MONTH$YEAR"wallpaper-"$NUMBER"_1600.jpg"
-	NAME="20"$YEAR"-"$MONTH"-"$NUMBER".jpg"
-	if wget -q --no-clobber $URL -O $NAME
-		then echo "Wallpaper "$NAME" saved in "$DEST 
-		else rm $NAME ; exit
-	fi
+for NUMBER in {1..100}; do
+	URL="http://ngm.nationalgeographic.com/wallpaper/img/${YEAR}/${MONTH}/${W_MONTH}${YEAR:2:2}wallpaper-${NUMBER}_1600.jpg"
+	NAME="$DEST/${YEAR}-${MONTH}-${NUMBER}.jpg"
+	wget -q --no-clobber "$URL" -O "$NAME" || { rm "$NAME" ; exit; }
+	echo "Wallpaper $NAME saved"
 done
-	
+
