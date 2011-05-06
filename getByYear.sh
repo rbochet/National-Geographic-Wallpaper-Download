@@ -1,9 +1,9 @@
 #!/bin/bash
 
-YEAR=$1
+# Get the year or keep the current
+[ -n "$1" ] && YEAR="$1" || YEAR="$(date '+%Y')"
 
-for MONTH in {01..12}
-do 
-	echo $MONTH
-	./getByMonth.sh $YEAR $MONTH &
+cd "$(dirname "$0")"
+for MONTH in {01..12}; do
+	./getByMonth.sh "$YEAR" "$MONTH" &
 done
